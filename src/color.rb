@@ -6,7 +6,6 @@ module RubyTrace
     ALPHA_MASK = 0x000000FF
 
     def initialize(*args)
-      throw "THIS NEEDS TO BE 0 to 1; this logic can become a translater"
       if args.length == 1
         @value = args[0]
       elsif args.length == 4

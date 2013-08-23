@@ -1,10 +1,11 @@
 module RubyTrace
   class Vector
-    attr_reader :x, :y, :z
+    attr_reader :x, :y, :z, :normalized
     def initialize(x=0,y=0,z=0)
       @x = x
       @y = y
       @z = z
+      @normalized = false
     end
 
     def add(other)
@@ -39,11 +40,12 @@ module RubyTrace
     end
 
     def hash
-      @x ^ @y ^ @z
+      @x.hash ^ @y.hash ^ @z.hash
     end
 
     def normalize
-      self * (1 / self.magnitude)
+      v = self * (1 / self.magnitude)
+      
     end
 
     def angle(other)
@@ -52,5 +54,10 @@ module RubyTrace
     end
 
     ZERO = Vector.new
+
+    private 
+      def normalized=(bool)
+        @normalized = bool
+      end
   end
 end
