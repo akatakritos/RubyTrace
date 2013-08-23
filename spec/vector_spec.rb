@@ -1,4 +1,5 @@
 require 'spec_helper.rb'
+include RubyTrace
 
 describe Vector do
 
