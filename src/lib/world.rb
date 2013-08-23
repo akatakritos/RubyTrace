@@ -1,0 +1,17 @@
+module RubyTrace
+  class World
+
+    attr_reader :light, :objects
+    def initialize
+      @light = Point.new(-320, -240, 0)
+      @objects = Array.new
+    end
+
+    def first_intersection(eye_position, ray_vector)
+      @objects.each do |o|
+        point = o.intersection(eye, ray_vector.normalize)
+        return Intersection.new(point, o) unless point.nil?
+      end
+    end
+  end
+end

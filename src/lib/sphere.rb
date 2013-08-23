@@ -17,5 +17,9 @@ module RubyTrace
 
       eye_position.translate(ray_vector * (v -Math.sqrt(disc))) unless disc < 0
     end
+
+    def normal_vector(surface_point)
+      surface_point - @center
+    end
   end
 end
