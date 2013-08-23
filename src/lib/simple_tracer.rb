@@ -12,28 +12,22 @@ module RubyTrace
     end
 
     def trace
-      x1 = field_of_view.x
-      x2 = x1 + field_of_view.width
-      y1 = field_of_view.y
-      y2 = y1 + field_of_view.height
-      z  = 0
-
-      x1..x2 do |x|
-        y1..y2 do |y|
-          ray = Point.new(x,y,0) - @camera_location
+      (0..@field_of_view.width-1).each do |x|
+        (0..@field_of_view.height-1).each do |y|
+          ray = Point.new(@field_of_view.x + x, @field_of_view.y + y,0) - @camera_location
           yield x, y, trace_ray(ray)
         end
       end
     end
 
     private
-      def trace_ray
+      def trace_ray(ray)
         intersection = @world.first_intersection(@camera_location, ray)
         intersection ? calculate_point_color(intersection) : @background_color
       end
 
       def calculate_point_color(intersection)
-        light_vector = (@world.light - intersection).normalize
+        light_vector = (@world.light - intersection.point).normalize
         normal_vector = (intersection.object.normal_vector(intersection.point)).normalize
         @shader.shade(light_vector, normal_vector, intersection.object.color)
       end

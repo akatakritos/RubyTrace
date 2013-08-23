@@ -9,9 +9,12 @@ module RubyTrace
 
     def first_intersection(eye_position, ray_vector)
       @objects.each do |o|
-        point = o.intersection(eye, ray_vector.normalize)
-        return Intersection.new(point, o) unless point.nil?
+        point = o.intersection(eye_position, ray_vector.normalize)
+        if point
+          return Intersection.new(point, o) unless point.nil?
+        end
       end
+      nil
     end
   end
 end

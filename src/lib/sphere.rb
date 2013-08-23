@@ -2,7 +2,9 @@ module RubyTrace
   class Sphere
 
     attr_accessor :center,:radius,:color
-    def initialize(center = Point.new(0,0,0), radius = 1, color = BasicColor.new(1,0,0))
+    def initialize(center = Point.new(0,0,0),
+                    radius = 1,
+                    color = BasicColor.new(1,0,0))
       @center = center
       @radius = radius
       @color = color

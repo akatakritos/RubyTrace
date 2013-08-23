@@ -12,7 +12,7 @@ module RubyTrace
     end
 
     def mult(scalar)
-      Color.new(@r * scalar, @g * scalar, @b * scalar)
+      BasicColor.new(@r * scalar, @g * scalar, @b * scalar)
     end
     alias_method :"*", :mult
   end
