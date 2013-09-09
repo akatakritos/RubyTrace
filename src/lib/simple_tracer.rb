@@ -12,8 +12,8 @@ module RubyTrace
     end
 
     def trace
-      (0..@field_of_view.width-1).each do |x|
-        (0..@field_of_view.height-1).each do |y|
+      (0...@field_of_view.width).each do |x|
+        (0...@field_of_view.height).each do |y|
           ray = Point.new(@field_of_view.x + x, @field_of_view.y + y,0) - @camera_location
           yield x, y, trace_ray(ray)
         end
